@@ -1,0 +1,131 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+/*Import Vendor CSS here*/
+@import "bootstrap.css";
+
+/*Main SCSS Styles*/
+
+/*Variables and Mixins*/
+$medium: 720px;
+$small:480px;
+
+/*Elements*/
+h1{
+	color:#666666;
+	@media screen and (max-width: $small){
+		font-size:24px;
+	}
+}
+button{
+	&.lg{
+		width:90%;
+		padding:20px;
+		margin:10px 0px;
+		font-size:24px;
+		font-weight:bold;
+		text-shadow:0px 1px 1px #000;
+	}
+}
+.fish-icon{
+	width:25px;
+	height:25px;
+	background-image:url(../../assets/fish.svg);
+	background-size:25px 25px;
+	display:block;
+}
+
+/*Sections And States*/
+#wrapper{
+	width:320px;
+
+}
+.front-page{
+	margin:20px 0px 0px 0px;
+}
+.col-centered{
+	margin:0 auto;
+	text-align:center;
+}
+/*Ajax Loader*/
+.loading{
+	position:fixed;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	z-index:1000;
+	background:#FFFFFF;
+	width:100%;
+	height:100%;
+	text-align:center;
+
+	img{
+		position:relative;
+		top:50%;
+	}
+}
+.loaded{
+	display:none;
+}
+/*google maps*/
+.angular-google-map-container { height: 300px; }
+
+#login{
+	text-align:center;
+
+	#login-form{
+		margin-top:20%;
+		text-align:left;
+
+		button{
+			width:100%;
+			padding:20px;
+		}
+	}
+}
+
+.modal-body{
+	float:left;
+	.radio{
+		float:left;
+		margin:5px;
+	}
+	.radio-selected{
+			color: #fff;
+			background-color: #449d44;
+			border-color: #398439;
+	}
+	label{
+		display:block;
+	}
+	input[name=species]{
+		display:none;
+	}
+	#fish-info{
+		input, textarea{
+			width:90%;
+			display:block;
+		}
+	}
+}

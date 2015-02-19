@@ -1,0 +1,51 @@
+{
+  "name": "snapshot",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "tripId": {
+      "type": "string",
+      "required": true
+    },
+    "origin": {
+      "type": "object"
+    },
+    "sunrise": {
+      "type": "string"
+    },
+    "sunset": {
+      "type": "string"
+    },
+    "moonPhase": {
+      "type": "string"
+    },
+    "temperature": {
+      "type": "string"
+    },
+    "dewpoint": {
+      "type": "string"
+    },
+    "humidity": {
+      "type": "string"
+    },
+    "pressure": {
+      "type": "object"
+    },
+    "condition": {
+      "type": "string"
+    },
+    "wind": {
+      "type": "object"
+    },
+    "timestamp": {
+      "type": "date"
+    },
+    "fish": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

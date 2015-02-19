@@ -1,0 +1,33 @@
+{
+  "name": "trip",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "start_time": {
+      "type": "date"
+    },
+    "user_id": {
+      "type": "string",
+      "required": "true"
+      },
+    "end_time": {
+      "type": "date"
+    },
+    "origin": {
+      "type": {}
+    },
+    "moon_phase": {
+      "type": {}
+    },
+    "sunrise": {
+      "type": {}
+    },
+    "sunset": {
+      "type": {}
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
