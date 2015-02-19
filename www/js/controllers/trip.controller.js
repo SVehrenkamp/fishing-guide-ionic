@@ -6,19 +6,19 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
     $scope.coords = coordinates;
 	
 	//Get User info from lb-services
-	$scope.getUser = function(){
-		$scope.user = User.getCurrent(
-			function(data){
-				//success
-				console.log('Success!');
-			},
-			function(res){
-				//error
-				console.log('ERROR::', res);
-				//redirect to login page
-				$location.url('/user/login');
-			});
-	};
+	// $scope.getUser = function(){
+	// 	$scope.user = User.getCurrent(
+	// 		function(data){
+	// 			//success
+	// 			console.log('Success!');
+	// 		},
+	// 		function(res){
+	// 			//error
+	// 			console.log('ERROR::', res);
+	// 			//redirect to login page
+	// 			$location.url('/user/login');
+	// 		});
+	// };
 
 
 	$scope.drawMap = function(){
@@ -68,7 +68,7 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
 			$scope.data = response;
 			
 			$scope.initialTripData = response.data;
-			$scope.initialTripData.user_id = $scope.user.id;
+			$scope.initialTripData.user_id = "svehrenkamp";
 			$scope.initialSnapshot = response.snapshot;
 		});
 	}	
@@ -85,7 +85,7 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
 			console.log($scope.initialSnapshot);
 			
 			$trips.createSnapshot(JSON.stringify($scope.initialSnapshot)).success(function(data){
-				$location.url('/'+$scope.initialSnapshot.tripId);
+				$location.url('/app/trips/'+$scope.initialSnapshot.tripId);
 			});	
 		});
 		$rootScope.tripStarted = true;
@@ -93,7 +93,7 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
 	};
 
 	//Get User
-	$scope.getUser();
+	//$scope.getUser();
 	//Draw Map
 	$scope.drawMap();
 	//Set Marker

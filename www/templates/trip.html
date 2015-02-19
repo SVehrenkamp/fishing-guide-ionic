@@ -1,29 +1,33 @@
-<div class="col-centered" ng-controller="TripController">
-	
- 	<h4>Welcome {{user.username}}</h4>
-	<div class="front-page">
-	<ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options">
-		<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-        </ui-gmap-marker>
-	</ui-gmap-google-map>
-<!-- 	<div id="trips-container">
-		<table class="table table-striped">
-			<thead>
-				<td>Date</td>
-				<td>Location</td>
-				<td>Latitude</td>
-				<td>Longitude</td>
-			</thead>
-			<tr ng-repeat="trip in trips">
-				<td><a href="#/trips/{{trip.id}}">{{trip.start_time}}</a></td>
-				<td><a href="#/trips/{{trip.id}}">{{trip.origin.city}}</a></td>
-				<td><a href="#/trips/{{trip.id}}">{{trip.origin.latitude}}</a></td>
-				<td><a href="#/trips/{{trip.id}}">{{trip.origin.longitude}}</a></td>
-			</tr>
-		</table>
+<ion-view>
+	<ion-content>
+		<div class="col-centered" ng-controller="TripController">
+			
+		 	<h4>Welcome {{user.username}}</h4>
+			<div class="front-page">
+			<ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options">
+				<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+		        </ui-gmap-marker>
+			</ui-gmap-google-map>
+		<!-- 	<div id="trips-container">
+				<table class="table table-striped">
+					<thead>
+						<td>Date</td>
+						<td>Location</td>
+						<td>Latitude</td>
+						<td>Longitude</td>
+					</thead>
+					<tr ng-repeat="trip in trips">
+						<td><a href="#/trips/{{trip.id}}">{{trip.start_time}}</a></td>
+						<td><a href="#/trips/{{trip.id}}">{{trip.origin.city}}</a></td>
+						<td><a href="#/trips/{{trip.id}}">{{trip.origin.latitude}}</a></td>
+						<td><a href="#/trips/{{trip.id}}">{{trip.origin.longitude}}</a></td>
+					</tr>
+				</table>
 
- -->		<button class="btn btn-primary lg" ng-show="!tripStarted" ng-click="createTrip()">Start Trip</button>
- 	<div ui-view></div>
-	</div>
-	
-</div>
+		 -->		<button class="btn btn-primary lg" ng-show="!tripStarted" ng-click="createTrip()">Start Trip</button>
+		 	<div ui-view></div>
+			</div>
+			
+		</div>
+	</ion-content>
+</ion-view>
