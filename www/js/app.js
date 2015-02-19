@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers'])
+var app = angular.module('app', ['ionic', 'app.controllers','ngResource', 'ipCookie', 'ui.bootstrap', 'uiGmapgoogle-maps', 'lbServices'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -19,7 +19,13 @@ angular.module('app', ['ionic', 'app.controllers'])
     }
   });
 })
-
+.config(function(uiGmapGoogleMapApiProvider) {
+      uiGmapGoogleMapApiProvider.configure({
+          key: 'AIzaSyCCPzv2FVkXMVLsppcE0GnTMACcx0bgUqA',
+          v: '3.17',
+          libraries: 'weather,geometry,visualization'
+      });
+  })
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -47,14 +53,50 @@ angular.module('app', ['ionic', 'app.controllers'])
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.trip', {
+    url: "/trips",
     views: {
       'menuContent': {
-        templateUrl: "templates/browse.html"
+        templateUrl: "templates/trip.html",
+        controller: "TripController"
       }
     }
+  })
+  .state('app.trip.trips', {
+    url: "/:tripId",
+    templateUrl: "templates/trips.trip.html",
+    controller: "TripSessionController"
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });
+
+    //Bootstrap App here
+    var coords = {};
+    var setLocation = function(location){
+
+      //coords.latitude = location.coords.latitude;
+      //coords.longitude = location.coords.longitude;
+      //Set Coords as cookies
+      //ipCookie('lat', this.coords.latitude);
+      //ipCookie('long', this.coords.longitude);
+
+      app.constant('coordinates', location.coords);
+      console.log('Location::', location.coords);
+      bootstrapApplication();
+
+    }
+
+    //Call the browser's geolocation method to get coords
+    var getLocation = function(){
+      navigator.geolocation.getCurrentPosition(this.setLocation);
+      console.log('Getting Location..');
+      return this;
+    }
+    var bootstrapApplication = function() {
+          angular.element(document).ready(function() {
+            angular.element('#loader').addClass('loaded');
+              angular.bootstrap(document, ["app"]);
+        });
+    }
+    getLocation();

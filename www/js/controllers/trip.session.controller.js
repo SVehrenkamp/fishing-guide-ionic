@@ -45,7 +45,7 @@ app.controller('TripSessionController', function($scope, $rootScope, $stateParam
 
 	$scope.openModal = function(){
 		var modalInstance = $modal.open({
-	      templateUrl: 'js/views/_modal.html',
+	      templateUrl: 'templates/modal.html',
 	      controller: 'ModalController',
 	      resolve: {
 	        addFish: function () {
