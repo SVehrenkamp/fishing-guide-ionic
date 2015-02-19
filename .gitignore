@@ -4,3 +4,11 @@
 node_modules/
 platforms/
 plugins/
+www/lib/angular
+www/lib/angular-animate
+www/lib/angular-cookie
+www/lib/angular-google-maps
+www/lib/angular-resource
+www/lib/angular-sanitize
+www/lib/angular-ui-router
+www/lib/lodash
