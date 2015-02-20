@@ -65,7 +65,7 @@ app.factory('$forecast', function($http,$q, ipCookie, coordinates){
 				lat = coordinates.latitude, 
 				long = coordinates.longitude,
 				deferred = $q.defer(),
-				url = 'http://localhost:3000/forecast/'+lat+','+long;
+				url = 'http://spothoppers.com/forecast/'+lat+','+long;
 			$http.get(url).success(function(response){
 			
 			var pressureIN = that.getPressureInches(response.currently.pressure);
