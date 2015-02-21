@@ -1,0 +1,350 @@
+[
+  {
+    "cid":1,
+    "county":"Aitkin "
+  },
+  {
+    "cid":2,
+    "county":"Anoka"
+  },
+  {
+    "cid":3,
+    "county":"Becker "
+  },
+  {
+    "cid":4,
+    "county":"Beltrami "
+  },
+  {
+    "cid":5,
+    "county":"Benton "
+  },
+  {
+    "cid":6,
+    "county":"Big Stone "
+  },
+  {
+    "cid":7,
+    "county":"Blue Earth "
+  },
+  {
+    "cid":8,
+    "county":"Brown"
+  },
+  {
+    "cid":9,
+    "county":"Carlton "
+  },
+  {
+    "cid":10,
+    "county":"Carver "
+  },
+  {
+    "cid":11,
+    "county":"Cass "
+  },
+  {
+    "cid":12,
+    "county":"Chippewa "
+  },
+  {
+    "cid":13,
+    "county":"Chisago "
+  },
+  {
+    "cid":14,
+    "county":"Clay "
+  },
+  {
+    "cid":15,
+    "county":"Clearwater "
+  },
+  {
+    "cid":16,
+    "county":"Cook "
+  },
+  {
+    "cid":17,
+    "county":"Cottonwood "
+  },
+  {
+    "cid":18,
+    "county":"Crow Wing"
+  },
+  {
+    "cid":19,
+    "county":"Dakota "
+  },
+  {
+    "cid":20,
+    "county":"Dodge "
+  },
+  {
+    "cid":21,
+    "county":"Douglas  "
+  },
+  {
+    "cid":22,
+    "county":"Faribault "
+  },
+  {
+    "cid":23,
+    "county":"Fillmore "
+  },
+  {
+    "cid":24,
+    "county":"Freeborn"
+  },
+  {
+    "cid":25,
+    "county":"Goodhue "
+  },
+  {
+    "cid":26,
+    "county":"Grant "
+  },
+  {
+    "cid":27,
+    "county":"Hennepin "
+  },
+  {
+    "cid":28,
+    "county":"Houston "
+  },
+  {
+    "cid":29,
+    "county":"Hubbard"
+  },
+  {
+    "cid":30,
+    "county":"Isanti "
+  },
+  {
+    "cid":31,
+    "county":"Itasca  "
+  },
+  {
+    "cid":32,
+    "county":"Jackson"
+  },
+  {
+    "cid":33,
+    "county":"Kanabec "
+  },
+  {
+    "cid":34,
+    "county":"Kandiyohi "
+  },
+  {
+    "cid":35,
+    "county":"Kittson "
+  },
+  {
+    "cid":36,
+    "county":"Koochiching"
+  },
+  {
+    "cid":37,
+    "county":"Lac qui Parle "
+  },
+  {
+    "cid":38,
+    "county":"Lake "
+  },
+  {
+    "cid":39,
+    "county":"Lake of the Woods "
+  },
+  {
+    "cid":40,
+    "county":"Le Sueur "
+  },
+  {
+    "cid":41,
+    "county":"Lincoln "
+  },
+  {
+    "cid":42,
+    "county":"Lyon"
+  },
+  {
+    "cid":43,
+    "county":"Mahnomen "
+  },
+  {
+    "cid":44,
+    "county":"Marshall "
+  },
+  {
+    "cid":45,
+    "county":"Martin "
+  },
+  {
+    "cid":46,
+    "county":"McLeod "
+  },
+  {
+    "cid":47,
+    "county":"Meeker "
+  },
+  {
+    "cid":48,
+    "county":"Mille Lacs "
+  },
+  {
+    "cid":49,
+    "county":"Morrison "
+  },
+  {
+    "cid":50,
+    "county":"Mower "
+  },
+  {
+    "cid":51,
+    "county":"Murray  "
+  },
+  {
+    "cid":52,
+    "county":"Nicollet "
+  },
+  {
+    "cid":53,
+    "county":"Nobles "
+  },
+  {
+    "cid":54,
+    "county":"Norman"
+  },
+  {
+    "cid":55,
+    "county":"Olmsted "
+  },
+  {
+    "cid":56,
+    "county":"Otter Tail  "
+  },
+  {
+    "cid":57,
+    "county":"Pennington "
+  },
+  {
+    "cid":58,
+    "county":"Pine "
+  },
+  {
+    "cid":59,
+    "county":"Pipestone "
+  },
+  {
+    "cid":60,
+    "county":"Polk "
+  },
+  {
+    "cid":61,
+    "county":"Pope"
+  },
+  {
+    "cid":62,
+    "county":"Ramsey "
+  },
+  {
+    "cid":63,
+    "county":"Red Lake "
+  },
+  {
+    "cid":64,
+    "county":"Redwood "
+  },
+  {
+    "cid":65,
+    "county":"Renville "
+  },
+  {
+    "cid":66,
+    "county":"Rice "
+  },
+  {
+    "cid":67,
+    "county":"Rock "
+  },
+  {
+    "cid":68,
+    "county":"Roseau"
+  },
+  {
+    "cid":69,
+    "county":"Scott "
+  },
+  {
+    "cid":70,
+    "county":"Sherburne "
+  },
+  {
+    "cid":71,
+    "county":"Sibley "
+  },
+  {
+    "cid":72,
+    "county":"St. Louis "
+  },
+  {
+    "cid":73,
+    "county":"Stearns "
+  },
+  {
+    "cid":74,
+    "county":"Steele "
+  },
+  {
+    "cid":75,
+    "county":"Stevens "
+  },
+  {
+    "cid":76,
+    "county":"Swift"
+  },
+  {
+    "cid":77,
+    "county":"Todd "
+  },
+  {
+    "cid":78,
+    "county":"Traverse  "
+  },
+  {
+    "cid":79,
+    "county":"Wabasha "
+  },
+  {
+    "cid":80,
+    "county":"Wadena "
+  },
+  {
+    "cid":81,
+    "county":"Waseca "
+  },
+  {
+    "cid":82,
+    "county":"Washington "
+  },
+  {
+    "cid":83,
+    "county":"Watonwan "
+  },
+  {
+    "cid":84,
+    "county":"Wilkin "
+  },
+  {
+    "cid":85,
+    "county":"Winona  "
+  },
+  {
+    "cid":86,
+    "county":"Wright  "
+  },
+  {
+    "cid":87,
+    "county":"Yellow Medicine "
+  }
+]

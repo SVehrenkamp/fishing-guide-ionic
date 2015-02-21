@@ -33,5 +33,9 @@
   "snapshot": {
     "dataSource": "mongo",
     "public": true
+  },
+  "lakes": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
