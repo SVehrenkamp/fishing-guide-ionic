@@ -1,0 +1,50 @@
+{
+  "name": "lakes",
+  "base": "PersistedModel",
+  "properties": {
+    "DOWLKNUM": {
+      "type": "string",
+      "required": true
+    },
+    "lakeName": {
+      "type": "string"
+    },
+    "altName": {
+      "type": "string"
+    },
+    "rivName": {
+      "type": "string"
+    },
+    "launchName": {
+      "type": "string"
+    },
+    "launchType": {
+      "type": "string"
+    },
+    "rampType": {
+      "type": "string"
+    },
+    "numRamps": {
+      "type": "string"
+    },
+    "numToilets": {
+      "type": "string"
+    },
+    "dataUpdate": {
+      "type": "string"
+    },
+    "acres": {
+      "type": "string"
+    },
+    "county": {
+      "type": "string"
+    },
+    "geo": {
+      "type": "geopoint"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
