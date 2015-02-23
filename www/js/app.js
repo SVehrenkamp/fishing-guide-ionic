@@ -66,6 +66,15 @@ var app = angular.module('app', ['ionic', 'app.controllers','ngResource', 'ipCoo
     url: "/:tripId",
     templateUrl: "templates/trips.trip.html",
     controller: "TripSessionController"
+  })
+  .state('app.lakes', {
+    url: "/lakes",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/lakes.html",
+        controller: "LakesController"
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');

@@ -1,0 +1,24 @@
+<ion-view>
+	<ion-content>
+		<div class="col-centered">
+			<h1>Find A Lake</h1>
+		 	<div class="front-page">
+		 		<h2>Lakes Near You</h2>
+		 		<table class="table table-striped">
+		 			<thead>
+		 				<td>Lake Name</td>
+		 				<td>County</td>
+		 				<td>Distance</td>
+		 			</thead>
+		 			<tr ng-repeat="lake in nearByLakes">
+		 				<td>{{lake.lakeName}}</td>
+		 				<td>{{lake.county}}</td>
+		 				<td>{{lake.distance}} (miles)</td>
+		 			</tr>
+		 		</table>
+			
+			</div>
+			
+		</div>
+	</ion-content>
+</ion-view>
