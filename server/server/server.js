@@ -11,7 +11,7 @@ boot(app, __dirname);
 
 var path = require('path');
 //App Entry Point index.html file
-app.use(loopback.static(path.resolve(__dirname, '../client')));
+app.use(loopback.static(path.resolve(__dirname, '../../root')));
 
 app.start = function() {
   // start the web server
