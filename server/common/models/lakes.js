@@ -24,8 +24,8 @@ module.exports = function(Lakes) {
       var lakes = [];
       for(var i = 0; i < results.length; i++){
         var lake = {};
-        lake[i] = results[i];
-        lake[i].distance = Math.round(GeoPoint.distanceBetween(location, results[i].geo, {type: 'miles'})*100)/100;
+        lake = results[i];
+        lake.distance = Math.round(GeoPoint.distanceBetween(location, results[i].geo, {type: 'miles'})*100)/100;
         lakes.push(lake);
       }
       cb(null, lakes);
