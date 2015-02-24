@@ -20,7 +20,7 @@ module.exports = function(Lakes) {
 
   //Return all snapshots when a fish was caught for a given tripID
   Lakes.nearBy = function(location, cb){
-    Lakes.find({where: {geo: {near: location} }, limit: 5 }, function(err, results){
+    Lakes.find({where: {geo: {near: location} }, limit: 50 }, function(err, results){
       var lakes = [];
       for(var i = 0; i < results.length; i++){
         var lake = {};
@@ -31,9 +31,10 @@ module.exports = function(Lakes) {
       cb(null, lakes);
     });
   };
-  Lakes.hello = function(cb){
-    var msg = "Hello";
-    cb(null, msg);
+  Lakes.county = function(county, cb){
+    Lakes.find({where: {county: county}}, function(err, results){
+      cb(null, results);
+    });
   };
   
 
@@ -46,11 +47,13 @@ module.exports = function(Lakes) {
           returns: {arg: 'nearBy', type: 'array'}
         }
     );
-   Lakes.remoteMethod (
-        'hello',
+  Lakes.remoteMethod (
+        'county',
         {
-          http: {path: '/hello', verb: 'get'},
-          returns: {arg: 'hello', type: 'array'}
+          http: {path: '/county', verb: 'get'},
+          accepts: {arg: 'county', type: 'string', http: { source: 'query' } },
+          returns: {arg: 'county', type: 'array'}
         }
     );
+
 };
