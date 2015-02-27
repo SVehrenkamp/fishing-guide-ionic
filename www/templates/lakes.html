@@ -17,9 +17,9 @@
 		 				<td>Distance</td>
 		 			</thead>
 		 			<tr ng-repeat="lake in nearByLakes">
-		 				<td>{{lake.lakeName}}</td>
-		 				<td>{{lake.county}}</td>
-		 				<td>{{lake.distance}} (miles)</td>
+		 				<td><a href="#/app/lakes/{{lake.id}}">{{lake.lakeName}}</a></td>
+		 				<td><a href="#/app/lakes/{{lake.id}}">{{lake.county}}</a></td>
+		 				<td><a href="#/app/lakes/{{lake.id}}">{{lake.distance}} (miles)</a></td>
 		 			</tr>
 		 		</table>
 			
