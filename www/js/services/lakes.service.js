@@ -18,6 +18,12 @@ app.service('$lakes', function($http){
 			    return response;
 			});
 			return promise;
+		},
+		getLake: function(id){
+			var promise = $http.get('/api/lakes/'+id).success(function(response){
+				return response;
+			});
+			return promise;
 		}
 	};
 	
