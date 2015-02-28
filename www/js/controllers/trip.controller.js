@@ -1,4 +1,4 @@
-app.controller('TripController', function($scope, $rootScope, $trips, $forecast, $location, ipCookie, coordinates, User){
+app.controller('TripController', function($scope, $rootScope, $trips, $forecast, $location, $http, ipCookie, coordinates, User){
 
 	//console.log('MainController Initialized::', $cookies);
 	//GET Location
@@ -89,8 +89,14 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
 			});	
 		});
 		$rootScope.tripStarted = true;
+		$scope.getHistory();
 		
 	};
+	$scope.getHistory = function(){
+		$http.get('/weather/history').success(function(resp){
+			console.log('Retrieved Weathe History!', resp);
+		});
+	}
 
 	//Get User
 	//$scope.getUser();
