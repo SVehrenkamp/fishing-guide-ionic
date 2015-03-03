@@ -14,7 +14,7 @@
     "loopback-datasource-juggler": "^2.7.0",
     "serve-favicon": "^2.0.1",
     "simple-http-proxy": "^0.5.11",
-    "underscore": "^1.8.1"
+    "underscore": "^1.8.2"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"

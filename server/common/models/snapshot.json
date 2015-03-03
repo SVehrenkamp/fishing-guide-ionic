@@ -16,7 +16,7 @@
     "sunset": {
       "type": "string"
     },
-    "moonPhase": {
+    "moon_phase": {
       "type": "string"
     },
     "temperature": {

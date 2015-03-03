@@ -26,6 +26,9 @@ module.exports = function(Snapshot) {
 			cb(null, fish);
 		});
 	}
+	Snapshot.hello = function(){
+		console.log('HEELLO');
+	}
 
 	//Define Custom Remote Methods
 	Snapshot.remoteMethod (

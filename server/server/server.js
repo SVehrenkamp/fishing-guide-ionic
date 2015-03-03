@@ -2,7 +2,6 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var proxy = require('simple-http-proxy');
 var request = require('request');
-var weatherService = require('weather-service');
 var coords;
 
 var app = module.exports = loopback();
@@ -11,6 +10,7 @@ var app = module.exports = loopback();
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname);
 
+var weatherService = require('weather-service');
 
 var path = require('path');
 //App Entry Point index.html file
@@ -25,19 +25,20 @@ app.start = function() {
 };
 
 
- app.use('/forecast/:coords', proxy('https://api.forecast.io/forecast/24afef7e6da9ac9b4819107bd7a9f4b0/', {
-  onrequest: function(options, req){
-  	options.path += req.params.coords;
-    coords = req.params.coords;
-    return this;
-  },
-  onresponse: function(msg, resp){
-    //console.log(resp);
-    weatherService.getHistory(coords);
-  }
-}));
-
-
+//  app.use('/forecast/:coords', proxy('https://api.forecast.io/forecast/24afef7e6da9ac9b4819107bd7a9f4b0/', {
+//   onrequest: function(options, req){
+//   	options.path += req.params.coords;
+//     coords = req.params.coords;
+//     return this;
+//   },
+//   onresponse: function(msg, resp){
+//     //console.log(resp);
+//     weatherService.getHistory(coords);
+//   }
+// }));
+app.use('/forecast/:coords', function(req, res){
+  weatherService.getWeather(req, res);
+}); 
 
 
 // start the server if `$ node server.js`
