@@ -22,7 +22,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 /*Import Vendor CSS here*/
-@import "bootstrap.css";
 
 /*Main SCSS Styles*/
 
@@ -44,7 +43,6 @@ button{
 		margin:10px 0px;
 		font-size:24px;
 		font-weight:bold;
-		text-shadow:0px 1px 1px #000;
 	}
 }
 .fish-icon{

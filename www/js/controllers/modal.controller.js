@@ -1,4 +1,4 @@
-app.controller('ModalController', function($scope, $modalInstance, addFish){
+app.controller('ModalController', function($scope, addFish){
 
 	$scope.species = [
 		'sunfish',

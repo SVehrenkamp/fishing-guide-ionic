@@ -2,6 +2,8 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var proxy = require('simple-http-proxy');
 var request = require('request');
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
 var coords;
 
 var app = module.exports = loopback();
@@ -36,10 +38,21 @@ app.start = function() {
 //     weatherService.getHistory(coords);
 //   }
 // }));
-app.use('/forecast/:coords', function(req, res){
+
+app.use('/createtrip/:coords', function(req, res){
   weatherService.getWeather(req, res);
 }); 
 
+app.use('/weather/:coords', function(req, res){
+  weatherService.getSnapshot(req, res);
+}); 
+
+
+app.on('createHistory', function(data, coords){
+  console.log('Event Caught', data, coords);
+  weatherService.createSnapshot(data.snapshot);
+  weatherService.getHistory(coords, data.snapshot.tripId);
+});
 
 // start the server if `$ node server.js`
 if (require.main === module) {

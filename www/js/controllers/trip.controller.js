@@ -1,4 +1,4 @@
-app.controller('TripController', function($scope, $rootScope, $trips, $forecast, $location, $http, ipCookie, coordinates, User){
+app.controller('TripController', function($scope, $rootScope, $trips, $location, $http, ipCookie, coordinates, User, $BASEURL){
 
 	//console.log('MainController Initialized::', $cookies);
 	//GET Location
@@ -61,41 +61,29 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
 	      }
 	    };
 	}
-	//Get Initial Weather Snapshot Data		
-	$scope.getWeather = function(){	
-		$forecast.getWeather().then(function(response){
-			console.log('CONTROLLER::', response.data);
-			$scope.data = response;
+	// //Get Initial Weather Snapshot Data		
+	// $scope.getWeather = function(){	
+	// 	$forecast.getWeather().then(function(response){
+	// 		console.log('CONTROLLER::', response.data);
+	// 		$scope.data = response;
 			
-			$scope.initialTripData = response.data;
-			$scope.initialTripData.user_id = "svehrenkamp";
-			$scope.initialSnapshot = response.snapshot;
-		});
-	}	
+	// 		$scope.initialTripData = response.data;
+	// 		$scope.initialTripData.user_id = "svehrenkamp";
+	// 		$scope.initialSnapshot = response.snapshot;
+	// 	});
+	// }	
 	// $trips.getTrips().then(function(resp){
 	// 	$scope.trips = resp.data;
 	// });
 
 	//Start A Trip session, take initial snapshot, persist to mongo and redirect to trip session page
 	$scope.createTrip = function(){
-		$trips.createTrip(JSON.stringify($scope.initialTripData)).success(function(data){
-			
-			$scope.initialSnapshot.tripId = data.id;
-			$scope.initialSnapshot.timestamp = Date.now();
-			console.log($scope.initialSnapshot);
-			
-			$trips.createSnapshot(JSON.stringify($scope.initialSnapshot)).success(function(data){
-				$location.url('/app/trips/'+$scope.initialSnapshot.tripId);
-			});	
+		$http.get($BASEURL+'/createtrip/'+$scope.coords.latitude+','+$scope.coords.longitude).success(function(resp){
+			console.log(resp);
+			$location.url('/app/trips/'+resp.snapshot.tripId);
 		});
 		$rootScope.tripStarted = true;
-		$scope.getHistory();
 		
-	};
-	$scope.getHistory = function(){
-		$http.get('/weather/history').success(function(resp){
-			console.log('Retrieved Weathe History!', resp);
-		});
 	}
 
 	//Get User
@@ -105,7 +93,7 @@ app.controller('TripController', function($scope, $rootScope, $trips, $forecast,
 	//Set Marker
 	$scope.setMarker();
 	//Get Initial Weather Snapshot Data		
-	$scope.getWeather();
+	//$scope.getWeather();
 			
 
 });

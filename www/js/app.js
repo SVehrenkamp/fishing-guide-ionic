@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'app.controllers','ngResource', 'ipCookie', 'ui.bootstrap', 'uiGmapgoogle-maps', 'lbServices'])
+var app = angular.module('app', ['ionic', 'app.controllers','ngResource', 'ipCookie', 'uiGmapgoogle-maps', 'lbServices'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -99,6 +99,8 @@ var app = angular.module('app', ['ionic', 'app.controllers','ngResource', 'ipCoo
 });
 
     //Bootstrap App here
+    // var $BASEURL = 'http://localhost:3000';
+    var $BASEURL = 'http://spothoppers.com';
     var coords = {};
     var setLocation = function(location){
 
@@ -109,6 +111,7 @@ var app = angular.module('app', ['ionic', 'app.controllers','ngResource', 'ipCoo
       //ipCookie('long', this.coords.longitude);
 
       app.constant('coordinates', location.coords);
+      app.constant('$BASEURL', $BASEURL);
       console.log('Location::', location.coords);
       bootstrapApplication();
 

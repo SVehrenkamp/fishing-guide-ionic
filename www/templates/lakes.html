@@ -4,24 +4,30 @@
 			<h1>Find A Lake</h1>
 		 	<div class="front-page">
 		 		<h2>Lakes Near You</h2>
-		 		<div class="form-group">
-			 		<label for="counties">Search Lakes By County</label>
-			 		<select name="counties" ng-change="showLakesByCounty(county)" ng-model="county" ng-options="county as county for county in counties">
-			 			<option value=""> --Select a County--</option>
-			 		</select>
+		 		<div class="list">
+			 		<label class="item item-input item-select">
+			 			<div class="input-label">
+			 				Search Lakes By County
+			 			</div>
+				 		<select name="counties" ng-change="showLakesByCounty(county)" ng-model="county" ng-options="county as county for county in counties">
+				 			<option value=""> --Select a County--</option>
+				 		</select>
+			 		</label>
 		 		</div>
-		 		<table class="table table-striped">
-		 			<thead>
-		 				<td>Lake Name</td>
-		 				<td>County</td>
-		 				<td>Distance</td>
-		 			</thead>
-		 			<tr ng-repeat="lake in nearByLakes">
-		 				<td><a href="#/app/lakes/{{lake.id}}">{{lake.lakeName}}</a></td>
-		 				<td><a href="#/app/lakes/{{lake.id}}">{{lake.county}}</a></td>
-		 				<td><a href="#/app/lakes/{{lake.id}}">{{lake.distance}} (miles)</a></td>
-		 			</tr>
-		 		</table>
+		 		<ion-list>
+		 			<ion-item 
+		 				ng-repeat="lake in nearByLakes"
+		 				can-swipe="listCanSwipe"
+		 				ng-click="show(lake)">
+		 				{{lake.lakeName}} - {{lake.county}} - {{lake.distance}} (miles)
+
+					    <ion-option-button class="button-positive"
+					                       ng-click="favorite(lake)">
+					                       <i class="icon ion-star"></i>
+					      Favorite
+					    </ion-option-button>
+		 			</ion-item>
+		 		</ion-list>
 			
 			</div>
 			

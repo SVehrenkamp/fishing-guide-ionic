@@ -60,56 +60,65 @@ app.factory('$forecast', function($http,$q, ipCookie, coordinates){
 			return (millibars  * 0.0295301);
 		},
 
-		getWeather: function(params){
-			var that = this,
-				lat = coordinates.latitude, 
-				long = coordinates.longitude,
-				deferred = $q.defer(),
-				url = '/forecast/'+lat+','+long;
-			$http.get(url).success(function(response){
+		// getWeather: function(params){
+		// 	var that = this,
+		// 		lat = coordinates.latitude, 
+		// 		long = coordinates.longitude,
+		// 		deferred = $q.defer(),
+		// 		url = '/forecast/'+lat+','+long;
+		// 	$http.get(url).success(function(response){
 			
-			var pressureIN = that.getPressureInches(response.currently.pressure);
-			var windBearing = response.currently.windBearing;
-			var windDirection = that.getWindDirection(windBearing);
+		// 	var pressureIN = that.getPressureInches(response.currently.pressure);
+		// 	var windBearing = response.currently.windBearing;
+		// 	var windDirection = that.getWindDirection(windBearing);
 				
-			console.log(response);
-				deferred.resolve({
-					data: {
-						start_time: response.currently.time,
-						origin : {
-							latitude : coordinates.latitude,
-							longitude : coordinates.longitude,
-							timezone: response.timezone
-						}
-					},
-					snapshot : {
-						origin : {
-							latitude : coordinates.latitude,
-							longitude : coordinates.longitude
-						},
-						sunrise: response.daily.data[0].sunriseTime,
-						sunset: response.daily.data[0].sunsetTime,
-						moonPhase: response.daily.data[0].moonPhase,
-						temperature : Math.round(response.currently.temperature),
-						dewpoint : Math.round(response.currently.dewPoint),
+		// 	console.log(response);
+		// 		deferred.resolve({
+		// 			data: {
+		// 				start_time: response.currently.time,
+		// 				origin : {
+		// 					latitude : coordinates.latitude,
+		// 					longitude : coordinates.longitude,
+		// 					timezone: response.timezone
+		// 				}
+		// 			},
+		// 			snapshot : {
+		// 				origin : {
+		// 					latitude : coordinates.latitude,
+		// 					longitude : coordinates.longitude
+		// 				},
+		// 				sunrise: response.daily.data[0].sunriseTime,
+		// 				sunset: response.daily.data[0].sunsetTime,
+		// 				moonPhase: response.daily.data[0].moonPhase,
+		// 				temperature : Math.round(response.currently.temperature),
+		// 				dewpoint : Math.round(response.currently.dewPoint),
 						
-						humidity : (response.currently.humidity*100+"%"),
-						pressure : {
-							mb : response.currently.pressure,
-							in : Math.round(pressureIN*100)/100
-						},
-						condition : response.currently.summary,
-						wind : {
-							speed : Math.round(response.currently.windSpeed),
-							direction : windDirection
-						}
-					}
+		// 				humidity : (response.currently.humidity*100+"%"),
+		// 				pressure : {
+		// 					mb : response.currently.pressure,
+		// 					in : Math.round(pressureIN*100)/100
+		// 				},
+		// 				condition : response.currently.summary,
+		// 				wind : {
+		// 					speed : Math.round(response.currently.windSpeed),
+		// 					direction : windDirection
+		// 				}
+		// 			}
 
 				
-				});
+		// 		});
+		// 	});
+		// 	console.log('Promise::',deferred);
+		// 	return deferred.promise;
+		// }
+		getWeather: function(params){
+			var lat = coordinates.latitude, 
+				lng = coordinates.longitude,
+		 		deferred = $q.defer();
+			$http.get($BASEURL+'/weather/'+lat+','+lng).success(function(resp){
+				console.log("From getWeather",deferred.promise);
+				return deferred.promise;
 			});
-			console.log('Promise::',deferred);
-			return deferred.promise;
 		}
 	};
 	

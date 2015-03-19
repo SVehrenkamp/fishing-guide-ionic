@@ -38,7 +38,7 @@
       "type": "object"
     },
     "timestamp": {
-      "type": "date"
+      "type": "number"
     },
     "fish": {
       "type": "object"
