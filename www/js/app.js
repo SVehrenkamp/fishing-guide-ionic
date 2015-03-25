@@ -99,8 +99,8 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ipCook
 });
 
     //Bootstrap App here
-    var $BASEURL = 'http://localhost:3000';
-    // var $BASEURL = 'http://spothoppers.com';
+    // var $BASEURL = 'http://localhost:3000';
+    var $BASEURL = 'http://spothoppers.com';
     var coords = {};
     var setLocation = function(location){
 
