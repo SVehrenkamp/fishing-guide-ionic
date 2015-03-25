@@ -1,0 +1,23 @@
+{
+  "name": "favorites",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "lakeId": {
+      "type": "string",
+      "required": true
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "favorited_at": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

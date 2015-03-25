@@ -1,4 +1,4 @@
-app.controller('LakesController', function($scope, $lakes, coordinates, $ionicActionSheet, $location){
+app.controller('LakesController', function($scope, $rootScope, $lakes, coordinates, $ionicActionSheet, $location, $http){
 	//ionic ui stuff
 	$scope.listCanSwipe = true;
 	// Triggered on a button click, or some other target
@@ -57,7 +57,15 @@ app.controller('LakesController', function($scope, $lakes, coordinates, $ionicAc
 		});
 	}
 	$scope.favorite = function(lake){
-		alert(lake.lakeName);
+		//alert(lake.lakeName);
+		var data = {};
+		data.lakeId = lake.id;
+		data.userId = $rootScope.user.id;
+		data.favorited_at = Date.now();
+		console.log(data);
+		$http.post($BASEURL+'/api/favorites', data).success(function(data){
+			alert(lake.lakeName+" has been added to your hotspots!");
+		});
 	}
 	$scope.showNearByLakes($scope.coords.str);
 	$scope.showCoords();

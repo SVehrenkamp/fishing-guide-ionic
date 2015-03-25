@@ -3,16 +3,16 @@
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "_id" : {
+    "_id": {
       "type": "ds.ObjectID",
       "id": true
-      },
+    },
     "start_time": {
       "type": "date"
     },
     "user_id": {
       "type": "string"
-      },
+    },
     "end_time": {
       "type": "date"
     },
