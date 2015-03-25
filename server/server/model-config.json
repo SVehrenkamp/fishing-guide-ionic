@@ -37,5 +37,9 @@
   "lakes": {
     "dataSource": "mongo",
     "public": true
+  },
+  "favorites": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

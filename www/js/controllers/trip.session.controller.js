@@ -1,4 +1,4 @@
-app.controller('TripSessionController', function($scope, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $stateParams, $trips, $http, $interval, $location, coordinates, $BASEURL, $timeout){
+app.controller('TripSessionController', function($scope, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $stateParams, $trips, $http, $interval, $location, coordinates, $BASEURL, $timeout, Camera){
 	$scope.id = $stateParams.tripId;
 	$scope.collapsed = [];
 	$scope.active = true;
@@ -149,6 +149,15 @@ $scope.species = [
 		$scope.active = false;
 		$location.url('/');
 	}
+
+	 $scope.takePhoto = function() {
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $scope.image = imageURI;
+    }, function(err) {
+      console.err(err);
+    });
+  };
 
 	if($scope.active){
 		$interval(function(){

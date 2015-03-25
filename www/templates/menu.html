@@ -14,20 +14,24 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      
+      <h1 class="title" ng-if="user">{{user.username}}'s dashboard</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item nav-clear menu-close ng-click="login()">
+        <ion-item nav-clear menu-close ng-click="login()" ng-if="!user">
           Login
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/lakes">
+        <ion-item nav-clear menu-close href="#/app/lakes" ng-if="user">
           Find a Lake
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/trips">
+        <ion-item nav-clear menu-close href="#/app/trips" ng-if="user">
           Start a Trip
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/reports">
+        <ion-item nav-clear menu-close href="#/app/favorites" ng-if="user">
+          My Hot Spots
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/reports" ng-if="user">
           My Reports
         </ion-item>
       </ion-list>
