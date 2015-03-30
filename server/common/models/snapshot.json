@@ -40,6 +40,12 @@
     "timestamp": {
       "type": "number"
     },
+    "user_id": {
+      "type": "string"
+    },
+    "lake": {
+      "type": "string"
+    },
     "fish": {
       "type": "object"
     }

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ipCookie', 'uiGmapgoogle-maps', 'lbServices'])
+var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ngCordova', 'ipCookie', 'uiGmapgoogle-maps', 'lbServices'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -93,7 +93,16 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ipCook
         controller: "ReportsController"
       }
     }
-  });
+  })
+  .state('app.favorites', {
+    url: "/favorites",
+    views: {
+      "menuContent": {
+        templateUrl: "templates/favorites.html",
+        controller: "FavoritesController"
+      }
+    }
+  });;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });
@@ -101,6 +110,7 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ipCook
     //Bootstrap App here
     // var $BASEURL = 'http://localhost:3000';
     var $BASEURL = 'http://spothoppers.com';
+    var $KEY = "AIzaSyCCPzv2FVkXMVLsppcE0GnTMACcx0bgUqA";
     var coords = {};
     var setLocation = function(location){
 
@@ -112,6 +122,7 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ipCook
 
       app.constant('coordinates', location.coords);
       app.constant('$BASEURL', $BASEURL);
+      app.constant('$KEY', $KEY);
       console.log('Location::', location.coords);
       bootstrapApplication();
 

@@ -2,12 +2,24 @@
 	<ion-content>
 		<div class="col-centered">
 			
-		 	<h4>Welcome {{user.username}}</h4>
+		 	<h4>{{closestLake.lakeName}}</h4>
 			<div class="front-page">
 			<ui-gmap-google-map center='map.center' zoom='map.zoom' options="map.options">
 				<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
 		        </ui-gmap-marker>
+		        <ui-gmap-polylines 
+		        	models="polylines" 
+		        	path="'path'" 
+		        	stroke="'stroke'" 
+		        	visible="'visible'"
+		        	clickable="'clickable'"
+		        	geodesic="'geodesic'" 
+		        	fit="false" 
+		        	editable="'editable'" 
+		        	draggable="'draggable'">
+				</ui-gmap-polylines>
 			</ui-gmap-google-map>
+
 		<!-- 	<div id="trips-container">
 				<table class="table table-striped">
 					<thead>

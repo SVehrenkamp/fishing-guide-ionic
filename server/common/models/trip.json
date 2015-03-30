@@ -13,6 +13,9 @@
     "user_id": {
       "type": "string"
     },
+    "lake": {
+      "type": "string"
+    },
     "end_time": {
       "type": "date"
     },

@@ -41,5 +41,9 @@
   "favorites": {
     "dataSource": "mongo",
     "public": true
+  },
+  "marker": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
