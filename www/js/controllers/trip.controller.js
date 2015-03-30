@@ -1,9 +1,13 @@
-app.controller('TripController', function($scope, $rootScope, $trips, $location, $http, ipCookie, coordinates, User, $BASEURL){
+app.controller('TripController', function($scope, $rootScope, $trips, $location, $http, ipCookie, coordinates, User, $BASEURL, $lakes, uiGmapGoogleMapApi){
 
 	//console.log('MainController Initialized::', $cookies);
 	//GET Location
 	$rootScope.tripStarted = false;
     $scope.coords = coordinates;
+    $scope.coordinates = {
+		lat : coordinates.latitude,
+		lng : coordinates.longitude,
+	};
 	
 	//Get User info from lb-services
 	// $scope.getUser = function(){
@@ -19,7 +23,17 @@ app.controller('TripController', function($scope, $rootScope, $trips, $location,
 	// 			$location.url('/user/login');
 	// 		});
 	// };
+	$scope.closestLake = {};
 
+	$scope.coordinates.str = $scope.coordinates.lat+","+$scope.coordinates.lng;
+	$scope.getClosestLake = function(params){
+		$lakes.getNearByLakes(params).then(function(resp){
+			resp = resp.data.nearBy;
+			$scope.closestLake = resp[0];
+			$rootScope.lake = $scope.closestLake.id;
+			console.log(resp);
+		});
+	}
 
 	$scope.drawMap = function(){
 		$scope.map = {
@@ -28,7 +42,7 @@ app.controller('TripController', function($scope, $rootScope, $trips, $location,
 				longitude: $scope.coords.longitude 
 			},
 			options: {
-				mapTypeId: 'satellite'
+				mapTypeId: 'hybrid'
 			},
 			zoom: 16 
 		};
@@ -77,8 +91,11 @@ app.controller('TripController', function($scope, $rootScope, $trips, $location,
 	// });
 
 	//Start A Trip session, take initial snapshot, persist to mongo and redirect to trip session page
-	$scope.createTrip = function(){
-		$http.get($BASEURL+'/createtrip/'+$scope.coords.latitude+','+$scope.coords.longitude).success(function(resp){
+	$scope.createTrip = function(data){
+		data = {};
+		data.user_id = $rootScope.user.id;
+		data.lake = $rootScope.lake;
+		$http.post($BASEURL+'/createtrip/'+$scope.coords.latitude+','+$scope.coords.longitude, data).success(function(resp){
 			console.log(resp);
 			$location.url('/app/trips/'+resp.snapshot.tripId);
 		});
@@ -94,6 +111,6 @@ app.controller('TripController', function($scope, $rootScope, $trips, $location,
 	$scope.setMarker();
 	//Get Initial Weather Snapshot Data		
 	//$scope.getWeather();
-			
+	$scope.getClosestLake($scope.coordinates.str);
 
 });

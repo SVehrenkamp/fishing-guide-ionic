@@ -1,23 +1,24 @@
 {
-  "name": "favorites",
+  "name": "marker",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "lakeId": {
-      "type": "string",
-      "required": true
-    },
-    "userId": {
-      "type": "string",
-      "required": true
-    },
-    "favorited_at": {
-      "type": "date",
-      "required": true
-    },
     "lake": {
-      "type": "object",
+      "type": "string",
       "required": true
+    },
+    "geopoint": {
+      "type": "geopoint",
+      "required": true
+    },
+    "date": {
+      "type": "date"
+    },
+    "snapshot": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
     }
   },
   "validations": [],

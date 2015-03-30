@@ -1,33 +1,21 @@
-app.controller('LakeViewController', function($scope, $lakes, $stateParams){
+app.controller('LakeViewController', function($scope, $lakes, $stateParams, uiGmapGoogleMapApi, coordinates, $http, $KEY){
 	$scope.id = $stateParams.lakeId;
+	$scope.userCoords = {
+		latitude: coordinates.latitude,
+		longitude: coordinates.longitude
+	};
 	
-	//Get Lake Data
-	$scope.getLakeData = function(id){
-		$lakes.getLake(id).then(function(data){
-			$scope.lake = data.data;
-			$scope.setCoords();
-		});
-	}
-	$scope.getLakeData($scope.id);
-	
-	$scope.setCoords = function(){
-		$scope.coords = {
-			latitude : $scope.lake.geo.lat,
-			longitude : $scope.lake.geo.lng
-		}
-		$scope.drawMap();
-		$scope.setMarker();
-	}
 
 	//Draw Map
 	$scope.drawMap = function(){
 		$scope.map = {
+			control: {},
 			center: {
 				latitude: $scope.coords.latitude, 
 				longitude: $scope.coords.longitude 
 			},
 			options: {
-				mapTypeId: 'satellite'
+				mapTypeId: 'hybrid'
 			},
 			zoom: 16 
 		};
@@ -36,8 +24,32 @@ app.controller('LakeViewController', function($scope, $lakes, $stateParams){
 	//Set Map Marker
 	$scope.setMarker = function(){
 		//Map Center
-		$scope.marker = {
+		$scope.markers = [
+		{
 	      id: 0,
+	      coords: $scope.userCoords,
+	      //Add Map Options
+	      options: { draggable: true },
+	      //Handle Map Events
+	      events: {
+	        dragend: function (marker, eventName, args) {
+	          $log.log('marker dragend');
+	          var lat = marker.getPosition().lat();
+	          var lon = marker.getPosition().lng();
+	          $log.log(lat);
+	          $log.log(lon);
+
+	          $scope.markers[0].options = {
+	            draggable: true,
+	            labelContent: "lat: " + $scope.useCoords.latitude + ' ' + 'lon: ' + $scope.useCoords.longitude,
+	            labelAnchor: "100 0",
+	            labelClass: "marker-labels"
+	          };
+	        }
+	      }
+	    },
+	    {
+	      id: 1,
 	      coords: $scope.coords,
 	      //Add Map Options
 	      options: { draggable: true },
@@ -50,17 +62,85 @@ app.controller('LakeViewController', function($scope, $lakes, $stateParams){
 	          $log.log(lat);
 	          $log.log(lon);
 
-	          $scope.marker.options = {
+	          $scope.marker[1].options = {
 	            draggable: true,
-	            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.long,
+	            labelContent: "lat: " + $scope.coords.latitude + ' ' + 'lon: ' + $scope.coords.longitude,
 	            labelAnchor: "100 0",
 	            labelClass: "marker-labels"
 	          };
 	        }
 	      }
-	    };
+	    }
+	    ];
 
 		console.log('Set Marker Called!', $scope.marker);
 	}
+		//Get Lake Data
+			
+			
+
+			$scope.setCoords = function(){
+			$scope.coords = {
+				latitude : $scope.lake.geo.lat,
+				longitude : $scope.lake.geo.lng
+			}
+			$scope.drawMap();
+			$scope.setMarker();
+		}
+
+		
+
+	uiGmapGoogleMapApi.then(function(maps) {
+		$scope.askedForDirections = false;
+		$scope.getLakeData = function(id){
+				$lakes.getLake(id).then(function(data){
+					$scope.lake = data.data;
+					$scope.setCoords();
+					
+				});
+			}
+			$scope.polylines = [{
+		        id: 1,
+		        control: {},
+		   		path: [],
+		        stroke: {
+		            color: '#6060FB',
+		            weight: 5
+		        },
+		        clickable: false,
+		        editable: false,
+		        //draggable: false,
+		        geodesic: true,
+		        visible: true
+		    }];
+		
+			$scope.getLakeData($scope.id);	
+    });
+
+    $scope.getDirections = function(){
+    	$scope.askedForDirections = true;
+    	$http.get("https://maps.googleapis.com/maps/api/directions/json?origin="+$scope.userCoords.latitude+","+$scope.userCoords.longitude+"&destination="+$scope.coords.latitude+","+$scope.coords.longitude+"&key="+$KEY).success(function(resp){
+			console.log("Resp::", resp);
+			$scope.polyline_path = resp.routes[0].overview_polyline.points;
+
+			$scope.polylines = [{
+		        id: 1,
+		        control: {},
+		   		path: google.maps.geometry.encoding.decodePath($scope.polyline_path),
+		        stroke: {
+		            color: '#6060FB',
+		            weight: 5
+		        },
+		        clickable: false,
+		        editable: true,
+		        //draggable: false,
+		        geodesic: true,
+		        visible: true
+		    }];
+
+		console.log($scope.polylines.control);
+		});
+    }
+
 
 });

@@ -39,7 +39,8 @@ app.start = function() {
 //   }
 // }));
 
-app.use('/createtrip/:coords', function(req, res){
+app.use('/createtrip/:coords', loopback.bodyParser(), function(req, res){
+  //console.log('ParsedBody::', req.body);
   weatherService.getWeather(req, res);
 }); 
 
@@ -51,7 +52,7 @@ app.use('/weather/:coords', function(req, res){
 app.on('createHistory', function(data, coords){
   console.log('Event Caught', data, coords);
   weatherService.createSnapshot(data.snapshot);
-  weatherService.getHistory(coords, data.snapshot.tripId);
+  weatherService.getHistory(coords, data.snapshot.tripId, data.snapshot.user_id, data.snapshot.lake);
 });
 
 // start the server if `$ node server.js`

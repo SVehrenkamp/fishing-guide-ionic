@@ -62,6 +62,7 @@ app.controller('LakesController', function($scope, $rootScope, $lakes, coordinat
 		data.lakeId = lake.id;
 		data.userId = $rootScope.user.id;
 		data.favorited_at = Date.now();
+		data.lake = lake;
 		console.log(data);
 		$http.post($BASEURL+'/api/favorites', data).success(function(data){
 			alert(lake.lakeName+" has been added to your hotspots!");

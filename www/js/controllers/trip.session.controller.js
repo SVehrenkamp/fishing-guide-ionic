@@ -1,4 +1,4 @@
-app.controller('TripSessionController', function($scope, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $stateParams, $trips, $http, $interval, $location, coordinates, $BASEURL, $timeout, Camera){
+app.controller('TripSessionController', function($scope, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $stateParams, $trips, $http, $interval, $location, coordinates, $BASEURL, $timeout, $cordovaCamera){
 	$scope.id = $stateParams.tripId;
 	$scope.collapsed = [];
 	$scope.active = true;
@@ -113,6 +113,9 @@ $scope.species = [
 		$scope.selected[$index] = true;
 		$scope.species_selected = true;
 		
+		console.log($scope.fish);
+		console.log($scope.selected);
+		
 		$timeout(function(){
 			$ionicSlideBoxDelegate.next();
 		}, 0300);
@@ -150,8 +153,17 @@ $scope.species = [
 		$location.url('/');
 	}
 
-	 $scope.takePhoto = function() {
-    Camera.getPicture().then(function(imageURI) {
+	$scope.takePhoto = function() {
+	var options = { quality : 50,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 200,
+        targetHeight: 200,
+        saveToPhotoAlbum: false
+      };
+    $cordovaCamera.getPicture(options).then(function(imageURI) {
       console.log(imageURI);
       $scope.image = imageURI;
     }, function(err) {
@@ -159,6 +171,28 @@ $scope.species = [
     });
   };
 
+$scope.save = function(){
+	var lat = coordinates.latitude;
+	var lng = coordinates.longitude;
+	$http.get($BASEURL+'/weather/'+lat+','+lng).success(function(response){
+			$scope.snapshot = response.snapshot;
+			
+			$scope.snapshot.tripId = $scope.id;
+			$scope.snapshot.user_id = $rootScope.user.id;
+			$scope.snapshot.lake = $rootScope.lake;
+
+			$scope.snapshot.timestamp = Math.floor((new Date).getTime()/1000);
+			$scope.snapshot.fish = $scope.fish;
+
+			$trips.createSnapshot(JSON.stringify($scope.snapshot)).then(function(data){
+				$scope.getSnapshots();
+				console.log(data);
+			});
+
+		});
+    $scope.modal.hide();
+}
+//Take Snapshots in background
 	if($scope.active){
 		$interval(function(){
 			$scope.addFish()

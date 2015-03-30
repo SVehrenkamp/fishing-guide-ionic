@@ -13,10 +13,11 @@
             </ion-slide>
             <ion-slide class="padding">
                 <button class="button icon-left ion-camera button-positive" ng-click="takePhoto()">Take Photo</button>
-                <img src="{{image}}" />
+                <img src="{{image}}" width="240"/>
             </ion-slide>
         </ion-slide-box>
-       
+    
+    <button class="button button-calm" ng-click="save()">Save</button>   
     <button class="button button-assertive" ng-click="cancel()">Cancel</button>
     </ion-content>
   </ion-modal-view>
