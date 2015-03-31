@@ -112,6 +112,8 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ngCord
     var $BASEURL = 'http://spothoppers.com';
     var $KEY = "AIzaSyCCPzv2FVkXMVLsppcE0GnTMACcx0bgUqA";
     var coords = {};
+    var position;
+    window.$userPath = [];
     var setLocation = function(location){
 
       //coords.latitude = location.coords.latitude;
@@ -125,6 +127,15 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ngCord
       app.constant('$KEY', $KEY);
       console.log('Location::', location.coords);
       bootstrapApplication();
+      position = location;
+
+      $userPath.push(position.coords);
+
+      $trackPosition(function(position){
+        $userPath.push(position.coords);
+      });
+
+      return position;
 
     }
 
@@ -134,6 +145,11 @@ var app = angular.module('app', ['ionic', 'app.controller','ngResource', 'ngCord
       console.log('Getting Location..');
       return this;
     }
+
+    var $trackPosition = function(callback){
+      navigator.geolocation.watchPosition(callback);
+    }
+
     var bootstrapApplication = function() {
           angular.element(document).ready(function() {
             angular.element('#loader').addClass('loaded');

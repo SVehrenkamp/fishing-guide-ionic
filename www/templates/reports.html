@@ -1,6 +1,6 @@
 <ion-view>
 	<ion-content>
-		<div class="col-centered">
+		<!-- <div class="col-centered">
 			<h1>My Reports</h1>
 			<h2>Report 1</h2>
 			<d3-bars data="data"></d3-bars>
@@ -8,6 +8,14 @@
 			<d3-bars data="moreData"></d3-bars>
 			<h2>Report 3</h2>
 			<d3-pie data="pieData"></d3-pie>
-		</div>
+		</div> -->
+
+
+   <form>
+     <button ng-click="getLocationUpdate()">Start Watching My Position</button>
+
+     <button ng-click="savePath()">Save My Path</button>
+   </form>
+	<div id="results" ng-repeat="l in loc">{{l.lat}} - {{l.lng}}<br></div>
 	</ion-content>
 </ion-view>

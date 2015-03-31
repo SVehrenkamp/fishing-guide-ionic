@@ -7,9 +7,8 @@
       "type": "string",
       "required": true
     },
-    "geopoint": {
-      "type": "geopoint",
-      "required": true
+    "path": {
+      "type": "array"
     },
     "date": {
       "type": "date"
