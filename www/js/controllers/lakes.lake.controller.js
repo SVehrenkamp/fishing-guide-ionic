@@ -121,24 +121,30 @@ app.controller('LakeViewController', function($scope, $lakes, $stateParams, uiGm
     	$scope.askedForDirections = true;
     	$http.get("https://maps.googleapis.com/maps/api/directions/json?origin="+$scope.userCoords.latitude+","+$scope.userCoords.longitude+"&destination="+$scope.coords.latitude+","+$scope.coords.longitude+"&key="+$KEY).success(function(resp){
 			console.log("Resp::", resp);
-			$scope.polyline_path = resp.routes[0].overview_polyline.points;
-
+			var path = [];
+			var steps = resp.routes[0].legs[0].steps;
+			_.each(steps, function(step, index){
+				var polyline = google.maps.geometry.encoding.decodePath(step.polyline.points);
+				_.each(polyline, function(key, val){
+					path.push(key);
+				});
+			});
 			$scope.polylines = [{
 		        id: 1,
 		        control: {},
-		   		path: google.maps.geometry.encoding.decodePath($scope.polyline_path),
+		   		path: path,
 		        stroke: {
 		            color: '#6060FB',
 		            weight: 5
 		        },
 		        clickable: false,
-		        editable: true,
+		        editable: false,
 		        //draggable: false,
 		        geodesic: true,
 		        visible: true
 		    }];
 
-		console.log($scope.polylines.control);
+		console.log($scope.polylines);
 		});
     }
 
