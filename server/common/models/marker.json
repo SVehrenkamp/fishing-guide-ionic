@@ -4,8 +4,7 @@
   "idInjection": true,
   "properties": {
     "lake": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "path": {
       "type": "array"

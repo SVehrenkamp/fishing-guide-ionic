@@ -64,8 +64,8 @@ $scope.getLocationUpdate = function(){
       console.log("Sorry, browser does not support geolocation!");
    }
 }
-$scope.savePath = function(data){
-  data = $scope.loc;
+$scope.savePath = function(){
+  var data = $scope.loc;
   $http.post($BASEURL+'/api/markers', data).success(function(resp){
     alert('Path Saved to Mongo!');
     console.log(resp);
