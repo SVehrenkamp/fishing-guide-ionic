@@ -1,7 +1,7 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var proxy = require('simple-http-proxy');
-var request = require('request');
+//var request = require('request');
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 var coords;
@@ -12,7 +12,7 @@ var app = module.exports = loopback();
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname);
 
-var weatherService = require('../../middlewares/weather-service/index.js');
+var weatherService = require('../middlewares/weather-service/index.js');
 
 var path = require('path');
 //App Entry Point index.html file
