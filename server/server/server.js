@@ -12,7 +12,7 @@ var app = module.exports = loopback();
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname);
 
-var weatherService = require('weather-service');
+var weatherService = require('../../middlewares/weather-service/index.js');
 
 var path = require('path');
 //App Entry Point index.html file
